@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +22,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::get('/transaction', function () {
-    return 'Hola mundo';
-})->name('transaction');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
+Route::group(['middleware' => 'user'], function () {
+    Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+});

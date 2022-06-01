@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class permit extends Model
 {
     use HasFactory;
 
-    public function account()
+    protected $guarded = [];
+
+    public function user()
     {
-        return $this->belongsTo(account::class,'number','account_origin');
+        return $this->belongsTo(User::class);
     }
 }

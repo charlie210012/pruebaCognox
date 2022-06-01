@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('account_origin');
-            $table->integer('user_origin');
-            $table->bigInteger('account_final');
-            $table->integer('user_final');
-            $table->integer('value');
+            $table->enum('type',['Ahorro','Corriente']);
+            $table->bigInteger('number')->unique();
+            $table->foreignIdFor(User::class);
+            $table->enum('status',['Activa','Inactiva','Bloqueada','Deshabilitada']);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('accounts');
     }
 };

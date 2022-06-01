@@ -4,7 +4,7 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('dashboard') }}">
-            <img src="{{ url('/storage/img/card1.svg') }}" class="navbar-brand-img h-100" alt="..." >
+            <img src="{{ url('/storage/img/card1.svg') }}" class="navbar-brand-img h-100" alt="...">
             <span class="ms-1 font-weight-bold">MIBANCA</span>
         </a>
     </div>
@@ -43,26 +43,52 @@
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de cuentas</h6>
             </li>
+            @if (Auth::user()->permit->type == 1)
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('transaction') }}">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span class="nav-link-text ms-1">Administración</span>
+                    </a>
+                </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                        aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span class="nav-link-text ms-1">Administración</span>
+                    </a>
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse" id="multiCollapseExample1">
+                                <div class="card card-body">
+                                    <ul>
+                                        <li>Crear Usuario</li>
+                                        <li>Crear Cuenta</li>
+                                        <li>Recargar Saldo</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('transaction') }}">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <span class="nav-link-text ms-1">Transacciones bancarias</span>
+                    </a>
+                </li>
+                <li class="nav-item pb-2">
+                    <a class="nav-link" href="">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                        <span class="nav-link-text ms-1">Estado de cuentas</span>
+                    </a>
+                </li>
+            @endif
             <li class="nav-item">
-                <a class="nav-link"
-                    href="{{route('transaction')}}">
-                    <i class="fa-solid fa-money-bill-transfer"></i>
-                    <span class="nav-link-text ms-1">Transacciones bancarias</span>
-                </a>
-            </li>
-            <li class="nav-item pb-2">
-                <a class="nav-link"
-                    href="">
-                    <i class="fa-solid fa-piggy-bank"></i>
-                    <span class="nav-link-text ms-1">Estado de cuentas</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span class="nav-link-text ms-1">Salir</span>
+                    <span class="nav-link-text ms-1">Salir</span>
                 </a>
             </li>
         </ul>
@@ -80,10 +106,10 @@
                 <div class="docs-info">
                     <h6 class="text-white up mb-0">Necesitas ayuda?</h6>
                     <p class="text-xs font-weight-bold">Por favor revisa la documentación</p>
-                    <a href="#" target="_blank"
-                        class="btn btn-white btn-sm w-100 mb-0">Documentación</a>
+                    <a href="#" target="_blank" class="btn btn-white btn-sm w-100 mb-0">Documentación</a>
                 </div>
             </div>
         </div>
     </div>
 </aside>
+
