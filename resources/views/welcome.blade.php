@@ -10,16 +10,16 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{env('APP_URL')}}/storage/assets/img/logo.png" rel="icon">
-  <link href="{{env('APP_URL')}}/storage/assets/img/logo.png" rel="apple-touch-icon">
+  <link href="../storage/assets/img/logo.png" rel="icon">
+  <link href="../storage/assets/img/logo.png" rel="apple-touch-icon">
 
   
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
 
-  <link href="{{env('APP_URL')}}/storage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../storage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="{{env('APP_URL')}}/storage/assets/css/style.css" rel="stylesheet">
+  <link href="../storage/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -52,7 +52,7 @@
           
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="{{env('APP_URL')}}/storage/assets/img/img1.svg" class="img-fluid animated" alt="">
+          <img src="../storage/assets/img/img1.svg" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
