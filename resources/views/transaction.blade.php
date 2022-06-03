@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
+
+@include('modals.accountOwn')
+@include('modals.accountOther')
+@include('modals.registerOther')
+
     <main class="main-content">
         <div class="container-fluid py-4">
             <div class="row">
@@ -12,16 +17,7 @@
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">Saldo a la fecha</p>
                                         <h5 class="font-weight-bolder mb-0">
-                                            @php
-                                                $sum = 0;
-                                            @endphp
-                                            @foreach (Auth::user()->accounts as $account)
-                                                @php
-                                                    $item = ($account->transactionAdd->sum('value') - $account->transactionRemove->sum('value'));
-                                                    $sum += $item;
-                                                @endphp
-                                            @endforeach
-                                            {{$sum}}
+                                            {{number_format(Auth::user()->consolidateds->sum('value'),'0',',','.')}}
                                             <span class="text-success text-sm font-weight-bolder">COP</span>
                                         </h5>
                                     </div>
@@ -44,6 +40,56 @@
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">Bienvenido,
                                             {{ Auth::user()->name }}</p>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Cuentas Propias</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#ownModal" class="btn btn-success">Transferir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Cuentas de Terceros</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#otherModal" class="btn btn-warning">Transferir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Inscribir Cuenta de Terceros</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#registerOtherModal"  class="btn btn-dark">Inscribir</button>
                                 </div>
                             </div>
                         </div>
@@ -94,6 +140,10 @@
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Registro</th>
                                             <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Estado
+                                            </th>
+                                            <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Saldo</th>
                                             <th
@@ -114,7 +164,7 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="../storage/img/small-logos/logo-xd.svg"
+                                                        <img src="../storage/img/finance.svg"
                                                             class="avatar avatar-sm me-3">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
@@ -147,10 +197,13 @@
                                                 </div>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <span class="text-xs font-weight-bold"> {{$account->transactionAdd->sum('value') - $account->transactionRemove->sum('value') }} </span>
+                                                <span class="text-xs font-weight-bold"> {{$account->status }} </span>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="text-xs font-weight-bold"> {{number_format(Auth::user()->consolidateds->find($account->id)->value,'2',',','.') }} </span>
                                             </td>
                                             <td class="align-middle">
-                                                <div class="progress-wrapper w-75 mx-auto">
+                                                {{-- <div class="progress-wrapper w-75 mx-auto">
                                                     <div class="progress-info">
                                                         <div class="progress-percentage">
                                                             <span class="text-xs font-weight-bold">60%</span>
@@ -160,7 +213,13 @@
                                                         <div class="progress-bar bg-gradient-info w-60" role="progressbar"
                                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
+                                                </div> --}}
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <a type="button" href="{{ route('status') }}" class="btn btn-info">Ver reporte</a>
+                                                    </div>
                                                 </div>
+                                                
                                             </td>
                                         </tr>
                                         @endforeach
@@ -173,7 +232,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card h-100">
                         <div class="card-header pb-0">
-                            <h6>Orders overview</h6>
+                            <h6>Ultimas Transacciones</h6>
                             <p class="text-sm">
                                 <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                                 <span class="font-weight-bold">24%</span> this month

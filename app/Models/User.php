@@ -50,4 +50,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(account::class);
     }
+
+    public function otherAccounts()
+    {
+        return $this->hasMany(registerOther::class);
+    }
+
+    public function consolidateds()
+    {
+        return $this->hasMany(consolidated::class);
+    }
+
 }

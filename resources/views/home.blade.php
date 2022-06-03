@@ -13,7 +13,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Saldo a la fecha</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        $2,000.000
+                                      {{number_format(Auth::user()->consolidateds->sum('value'),'0',',','.')}}
                                         <span class="text-success text-sm font-weight-bolder">COP</span>
                                     </h5>
                                 </div>

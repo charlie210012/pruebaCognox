@@ -16,13 +16,17 @@ class account extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function transactionRemove()
+    public function transactionsRemove()
     {
-        return $this->hasMany(Transaction::class,'account_origin','number');
+        return $this->hasMany(Transaction::class,'account_origin','id');
     }
 
-    public function transactionAdd()
+    public function transactionsAdd()
     {
-        return $this->hasMany(Transaction::class,'account_final','number');
+        return $this->hasMany(Transaction::class,'account_final','id');
+    }
+
+    public function otherAccount(){
+        return $this->hasOne(registerOther::class);
     }
 }

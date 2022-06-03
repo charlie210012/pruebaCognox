@@ -51,24 +51,10 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                        aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <a class="nav-link" >
                         <i class="fa-solid fa-building-columns"></i>
                         <span class="nav-link-text ms-1">Administración</span>
                     </a>
-                    <div class="row">
-                        <div class="col">
-                            <div class="collapse" id="multiCollapseExample1">
-                                <div class="card card-body">
-                                    <ul>
-                                        <li>Crear Usuario</li>
-                                        <li>Crear Cuenta</li>
-                                        <li>Recargar Saldo</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </li>
             @else
                 <li class="nav-item">
@@ -77,10 +63,10 @@
                         <span class="nav-link-text ms-1">Transacciones bancarias</span>
                     </a>
                 </li>
-                <li class="nav-item pb-2">
-                    <a class="nav-link" href="">
-                        <i class="fa-solid fa-piggy-bank"></i>
-                        <span class="nav-link-text ms-1">Estado de cuentas</span>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('status') }}">
+                        <i class="fa-solid fa-money-bill-trend-up"></i>
+                        <span class="nav-link-text ms-1">Estados de Cuenta</span>
                     </a>
                 </li>
             @endif

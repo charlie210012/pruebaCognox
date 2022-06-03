@@ -22,6 +22,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
@@ -89,6 +90,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
 integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ=="
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 
 <!--adiccional-->
@@ -111,6 +113,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../storage/js/core/popper.min.js"></script>
     <script src="../storage/js/core/bootstrap.min.js"></script>
     <script src="../storage/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../storage/js/requests.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -124,9 +127,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../storage/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
     
-
 <!-- Google analytics script-->
 </body>
 

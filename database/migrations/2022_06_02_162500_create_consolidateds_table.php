@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\account;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +15,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('consolidateds', function (Blueprint $table) {
             $table->id();
-            $table->integer('account_origin');
-            $table->integer('user_origin');
-            $table->string('code',255)->nullable();
-            $table->integer('account_final');
-            $table->integer('user_final');
-            $table->integer('value');
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(account::class);
+            $table->bigInteger('value');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('consolidateds');
     }
 };

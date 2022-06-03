@@ -44,5 +44,13 @@ class LoginController extends Controller
         return 'identification';
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|integer',
+            'password' => 'required|integer',
+        ]);
+    }
+
 
 }
