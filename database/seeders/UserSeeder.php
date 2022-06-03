@@ -34,13 +34,13 @@ class UserSeeder extends Seeder
 
         account::create([
             'type'=>'Ahorro',
-            'number'=>89460591512,
+            'number'=>294605915,
             'user_id'=>1,
             'status'=>'Activa'
         ]);
         account::create([
             'type'=>'Corriente',
-            'number'=>82033565646,
+            'number'=>203356564,
             'user_id'=>1,
             'status'=>'Activa'
         ]);
