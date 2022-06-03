@@ -14,7 +14,7 @@ class TransactionController extends Controller
     public function index()
     {
         $otherAccounts = account::where('user_id','!=',Auth::user()->id)->get();
-        return view('Transaction',[
+        return view('transaction',[
             'otherAccounts'=>$otherAccounts
         ]);
     }
@@ -74,7 +74,7 @@ class TransactionController extends Controller
                     'mensaje'=>'La cuenta de destino no esta habiliditada'
                 ]);
             }
-            
+
             $hash = $request->account_origin.Auth::user()->id.$request->value.now();
 
             $transaction = Transaction::create([
