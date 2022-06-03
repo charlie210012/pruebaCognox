@@ -61,4 +61,14 @@ class User extends Authenticatable
         return $this->hasMany(consolidated::class);
     }
 
+    public function transactionsRemove()
+    {
+        return $this->hasMany(Transaction::class,'user_origin','id');
+    }
+
+    public function transactionsAdd()
+    {
+        return $this->hasMany(Transaction::class,'user_final','id');
+    }
+
 }

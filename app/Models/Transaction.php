@@ -15,4 +15,12 @@ class Transaction extends Model
     {
         return $this->belongsTo(account::class,'id','account_origin');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_origin','id');
+    }
+
+
+
 }

@@ -1,10 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-
-@include('modals.accountOwn')
-@include('modals.accountOther')
-@include('modals.registerOther')
+    @include('modals.accountOwn')
+    @include('modals.accountOther')
+    @include('modals.registerOther')
 
     <main class="main-content">
         <div class="container-fluid py-4">
@@ -17,7 +16,7 @@
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">Saldo a la fecha</p>
                                         <h5 class="font-weight-bolder mb-0">
-                                            {{number_format(Auth::user()->consolidateds->sum('value'),'0',',','.')}}
+                                            {{ number_format(Auth::user()->consolidateds->sum('value'), '0', ',', '.') }}
                                             <span class="text-success text-sm font-weight-bolder">COP</span>
                                         </h5>
                                     </div>
@@ -57,7 +56,8 @@
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#ownModal" class="btn btn-success">Transferir</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#ownModal"
+                                        class="btn btn-success">Transferir</button>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,8 @@
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#otherModal" class="btn btn-warning">Transferir</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#otherModal"
+                                        class="btn btn-warning">Transferir</button>
                                 </div>
                             </div>
                         </div>
@@ -85,11 +86,13 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Inscribir Cuenta de Terceros</p>
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Inscribir Cuenta de
+                                            Terceros</p>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#registerOtherModal"  class="btn btn-dark">Inscribir</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#registerOtherModal"
+                                        class="btn btn-dark">Inscribir</button>
                                 </div>
                             </div>
                         </div>
@@ -105,24 +108,10 @@
                                     <h6>Cuentas</h6>
                                     <p class="text-sm mb-0">
                                         <i class="fa fa-check text-info" aria-hidden="true"></i>
-                                        <span class="font-weight-bold ms-1">{{Auth::user()->accounts->where('status','Activa')->count()}} cuentas</span> Activas
+                                        <span
+                                            class="font-weight-bold ms-1">{{ Auth::user()->accounts->where('status', 'Activa')->count() }}
+                                            cuentas</span> Activas
                                     </p>
-                                </div>
-                                <div class="col-lg-6 col-5 my-auto text-end">
-                                    <div class="dropdown float-lg-end pe-4">
-                                        <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v text-secondary"></i>
-                                        </a>
-                                        <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a>
-                                            </li>
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Another
-                                                    action</a></li>
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else
-                                                    here</a></li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -153,57 +142,46 @@
                                     </thead>
                                     <tbody>
                                         @foreach (Auth::user()->accounts as $account)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{$account->type}}</h6>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">{{ $account->type }}</h6>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../storage/img/finance.svg"
-                                                            class="avatar avatar-sm me-3">
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div>
+                                                            <img src="../storage/img/finance.svg"
+                                                                class="avatar avatar-sm me-3">
+                                                        </div>
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">{{ $account->number }}</h6>
+                                                        </div>
                                                     </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{$account->number}}</h6>
+                                                </td>
+                                                <td>
+                                                    <div class="avatar-group mt-2">
+                                                        @foreach($account->transactionsAdd as $a)
+                                                        <a href="javascript:;" class="avatar avatar-xs rounded-circle"
+                                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                            title="{{$a->user->name}}">
+                                                            <img alt="Image placeholder" src="../storage/img/team-2.jpg">
+                                                        </a>
+                                                        @endforeach
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="avatar-group mt-2">
-                                                    <a href="javascript:;" class="avatar avatar-xs rounded-circle"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Ryan Tompson">
-                                                        <img alt="Image placeholder" src="../storage/img/team-1.jpg">
-                                                    </a>
-                                                    <a href="javascript:;" class="avatar avatar-xs rounded-circle"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Romina Hadid">
-                                                        <img alt="Image placeholder" src="../storage/img/team-2.jpg">
-                                                    </a>
-                                                    <a href="javascript:;" class="avatar avatar-xs rounded-circle"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Alexander Smith">
-                                                        <img alt="Image placeholder" src="../storage/img/team-3.jpg">
-                                                    </a>
-                                                    <a href="javascript:;" class="avatar avatar-xs rounded-circle"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Jessica Doe">
-                                                        <img alt="Image placeholder" src="../storage/img/team-4.jpg">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-xs font-weight-bold"> {{$account->status }} </span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-xs font-weight-bold"> {{number_format(Auth::user()->consolidateds->find($account->id)->value,'2',',','.') }} </span>
-                                            </td>
-                                            <td class="align-middle">
-                                                {{-- <div class="progress-wrapper w-75 mx-auto">
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span class="text-xs font-weight-bold"> {{ $account->status }} </span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span class="text-xs font-weight-bold">
+                                                        {{ number_format(Auth::user()->consolidateds->find($account->id)->value, '2', ',', '.') }}
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    {{-- <div class="progress-wrapper w-75 mx-auto">
                                                     <div class="progress-info">
                                                         <div class="progress-percentage">
                                                             <span class="text-xs font-weight-bold">60%</span>
@@ -214,14 +192,15 @@
                                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </div> --}}
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <a type="button" href="{{ route('status') }}" class="btn btn-info">Ver reporte</a>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <a type="button" href="{{ route('status') }}"
+                                                                class="btn btn-info">Ver reporte</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                
-                                            </td>
-                                        </tr>
+
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -235,67 +214,42 @@
                             <h6>Ultimas Transacciones</h6>
                             <p class="text-sm">
                                 <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                                <span class="font-weight-bold">24%</span> this month
+                                <span class="font-weight-bold">{{ date('F') }}</span> {{ now() }}
                             </p>
                         </div>
                         <div class="card-body p-3">
                             <div class="timeline timeline-one-side">
-                                <div class="timeline-block mb-3">
-                                    <span class="timeline-step">
-                                        <i class="ni ni-bell-55 text-success text-gradient"></i>
-                                    </span>
-                                    <div class="timeline-content">
-                                        <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
-                                        <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-block mb-3">
-                                    <span class="timeline-step">
-                                        <i class="ni ni-html5 text-danger text-gradient"></i>
-                                    </span>
-                                    <div class="timeline-content">
-                                        <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
-                                        <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-block mb-3">
-                                    <span class="timeline-step">
-                                        <i class="ni ni-cart text-info text-gradient"></i>
-                                    </span>
-                                    <div class="timeline-content">
-                                        <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
-                                        <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-block mb-3">
-                                    <span class="timeline-step">
-                                        <i class="ni ni-credit-card text-warning text-gradient"></i>
-                                    </span>
-                                    <div class="timeline-content">
-                                        <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order
-                                            #4395133</h6>
-                                        <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-block mb-3">
-                                    <span class="timeline-step">
-                                        <i class="ni ni-key-25 text-primary text-gradient"></i>
-                                    </span>
-                                    <div class="timeline-content">
-                                        <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development
-                                        </h6>
-                                        <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-block">
-                                    <span class="timeline-step">
-                                        <i class="ni ni-money-coins text-dark text-gradient"></i>
-                                    </span>
-                                    <div class="timeline-content">
-                                        <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
-                                        <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
-                                    </div>
-                                </div>
+                                @foreach ($transferencias as $transferencia)
+                                    @if ($transferencia['Tipo_transaccion'] == 'Te transfirió')
+                                        <div class="timeline-block mb-3">
+                                            <span class="timeline-step">
+                                                <i class="ni ni-bell-55 text-success text-gradient"></i>
+                                            </span>
+                                            <div class="timeline-content">
+                                                <h6 class="text-dark text-sm font-weight-bold mb-0">
+                                                    $ {{ $transferencia['valor'] }},
+                                                    {{ $transferencia['Tipo_transaccion'] . ' ' . $transferencia['usuario_origen'] }}
+                                                </h6>
+                                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
+                                                    {{ $transferencia['fecha'] }}</p>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="timeline-block mb-3">
+                                            <span class="timeline-step">
+                                                <i class="ni ni-money-coins text-dark text-gradient"></i>
+                                            </span>
+                                            <div class="timeline-content">
+                                                <h6 class="text-dark text-sm font-weight-bold mb-0">
+                                                    $ {{ $transferencia['valor'] }},
+                                                    {{ $transferencia['Tipo_transaccion'] . ' ' . $transferencia['usuario_destino'] }}
+                                                </h6>
+                                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
+                                                    {{ $transferencia['fecha'] }}</p>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

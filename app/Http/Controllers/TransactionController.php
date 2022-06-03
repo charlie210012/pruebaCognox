@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class TransactionController extends Controller
 {
     public function index()
     {
+        $transferencias = $this->consultTransaccion();
         $otherAccounts = account::where('user_id','!=',Auth::user()->id)->get();
         return view('transaction',[
-            'otherAccounts'=>$otherAccounts
+            'otherAccounts'=>$otherAccounts,
+            'transferencias'=>$transferencias
         ]);
     }
     
@@ -103,5 +106,26 @@ class TransactionController extends Controller
                 return true;
             }
         }
+    }
+
+    public function consultTransaccion()
+    {
+        $transactions = Transaction::where('user_final',Auth::user()->id)
+        ->orWhere('user_origin',Auth::user()->id)->latest()->get();
+
+        $collection = [];
+
+        foreach($transactions as  $transaction){
+ 
+         $values = [
+             "fecha" => date('Y-m-d H:i:s',strtotime($transaction->created_at)),
+             "usuario_origen" => User::find($transaction->user_origin)->name,
+             "usuario_destino" => User::find($transaction->user_final)->name,
+             "valor" => number_format($transaction->value,'0',',','.'),
+             "Tipo_transaccion" => Auth::user()->id == $transaction->user_origin?'Transferiste a':'Te transfirió'
+         ];
+         array_push($collection, $values);
+        }
+        return $collection;
     }
 }

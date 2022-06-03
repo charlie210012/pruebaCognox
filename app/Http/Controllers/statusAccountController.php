@@ -29,7 +29,7 @@ class statusAccountController extends Controller
             "fecha" => date('Y-m-d H:i:s',strtotime($report->created_at)),
             "cuenta_origen" => account::find($report->account_origin)->number,
             "cuenta_destino" => account::find($report->account_final)->number,
-            "valor" => number_format($report->value,'0','.',','),
+            "valor" => number_format($report->value,'0',',','.'),
             "Tipo_transaccion" => (Auth::user()->otherAccounts->where('account_id', $report->account_final)->count() == 0)?'Transferencia propia':'Transferencia de terceros'
         ];
         array_push($collection, $values);
