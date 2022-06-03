@@ -17,6 +17,7 @@ class statusAccountController extends Controller
 
     public function report(Request $request)
     {
+        //bug encontrado
 
        $reports = Transaction::where('account_origin',$request->id)
        ->orWhere('account_final',$request->id)->get();
