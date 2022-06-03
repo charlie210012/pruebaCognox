@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Bienvenido status,
+                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Bienvenido,
                                             {{ Auth::user()->name }}</p>
                                     </div>
                                 </div>

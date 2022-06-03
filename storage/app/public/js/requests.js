@@ -9,6 +9,7 @@ $('#ownTransfer').submit(function (e) {
         url:  '/transaction',
         data: datos,
         success: function(r){
+            console.log(r);
             $('#ownModal').modal('hide');
             if(r['status']=="Error"){
                 Swal.fire({        

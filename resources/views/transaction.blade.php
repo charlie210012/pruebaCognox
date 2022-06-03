@@ -211,7 +211,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card h-100">
                         <div class="card-header pb-0">
-                            <h6>Ultimas Transacciones</h6>
+                            <h6>Ultimas 6 Transacciones</h6>
                             <p class="text-sm">
                                 <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                                 <span class="font-weight-bold">{{ date('F') }}</span> {{ now() }}
