@@ -1,4 +1,4 @@
-<p align="center"><a href="http://cognox.carlosarevalocortes.tech/login" target="_blank"><img src="../storage\img\loginResult.png" width="400"></a></p>
+<p align="center"><a href="http://cognox.carlosarevalocortes.tech/login" target="_blank"><img src="http://cognox.carlosarevalocortes.tech/storage/img/loginResult.png" width="400"></a></p>
 
 
 ## Acerca de la prueba
@@ -17,42 +17,46 @@ Debido a que la prueba no fue tan compleja solo pude aplicar un patrón de compo
 
 ## Instalacion
 
-Clona el repositorio [Respositorio](https://github.com/charlie210012/pruebaCognox.git)
+- Clona el repositorio [Respositorio](https://github.com/charlie210012/pruebaCognox.git)
+- Corre el composer install
+- Corre npm install
+- Corre npm run dev
+- Corre el comando php artisan migrate --seed
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Nota 1: En este proyecto use la metodologia de desarrollo TDD por tanto hay pruebas de tipo unitaria y feature,
+para verificar que pasan los caso que se diseñaron correr php artisan test
 
-## Laravel Sponsors
+Nota: Si deseas usar DOCKER el proyecto tiene el docker-composer y los docker-file
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Usuarios y Casos de prueba
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+-Una vez en http://cognox.carlosarevalocortes.tech/login
+-Ingrese las credenciales que se daran a continuación cada uno tiene diferentes permisos usela segun sea el caso
 
-## Contributing
+-Credencia 1:
+usuario: 1144170160
+password: 2205
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Condiciones: Este usuario tiene dos cuentas habilitadas y un saldo precargado desde administración de 52 millones
 
-## Code of Conduct
+-credencial 2:
+usuario: 111245661
+password: 1234
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Condiciones: Este usuario tiene dos cuentas una habilitada y otra bloqueada y un salgo precargado, no debera dejar transferir entre cuentas porque solo tiene una cuenta habilitada, pero si a terceros si decide inscribir una cuenta.
 
-## Security Vulnerabilities
+credencial 3:
+usuario: 13533556
+password: 1234
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Condiciones: Este usuario no tiene ninguna cuenta habilitada ni creada, por tanto no podra realizar ninguna transaccion
 
-## License
+Estoy atento a cualquier retroalimentación
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Desarrollador
+
+- **[Carlos Andres Arevalo Cortes](https://github.com/charlie210012)**
+
+
+## Gracias por la oportunidad

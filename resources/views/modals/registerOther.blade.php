@@ -11,8 +11,8 @@
 
                 <div class="tile">
                     <div class="tile-body">
-                        @if(Auth::user()->accounts->where('status','Activa')->count() <= 1)
-                        <p>No puede realizar transacciones a cuentas de terceros porque no tienes una cuenta activa</p>
+                        @if(Auth::user()->accounts->where('status','Activa')->count() < 1)
+                        <p>No puedes realizar la inscripción porque no tiene una cuenta activa</p>
                         @else
                         <form id="registerOther" name="registerOther" method="POST">
                             <div class="form-group">

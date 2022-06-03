@@ -11,8 +11,8 @@
 
                 <div class="tile">
                     <div class="tile-body">
-                        @if(Auth::user()->accounts->where('status','Activa')->count() <= 1)
-                        <p>No puede realizar transacciones entre cuentas porque solo tienes una cuenta activa</p>
+                        @if(Auth::user()->accounts->where('status','Activa')->count() < 1)
+                        <p>No puede realizar transacciones a terceros porque no tiene una cuenta activa</p>
                         @else
                         <form id="otherTransfer" name="otherTransfer" method="POST">
                             {{-- @if ($errors->any())
