@@ -12,7 +12,7 @@ class validateContract
             'Cuentas iguales'=>'equalAccounts',
             'Sin saldo' => 'noBalance',
             'Campos vacios'=>'emptyFields',
-            'Crear registro validado'=>'createValidated'
+            'Cuenta de terceros no habilitada'=>'cuentaOtherValidated', 
         ];
         return $contracts;
     }
