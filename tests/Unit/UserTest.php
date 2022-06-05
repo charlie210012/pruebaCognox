@@ -20,4 +20,18 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Collection::class,$user->accounts);
         
     }
+
+    public function test_a_user_has_many_otherAccounts()
+    {
+        $user = new User();
+
+        $this->assertInstanceOf(Collection::class,$user->otherAccounts);
+    }
+
+    public function test_a_user_has_many_consolidateds()
+    {
+        $user = new User();
+
+        $this->assertInstanceOf(Collection::class,$user->consolidateds);
+    }
 }

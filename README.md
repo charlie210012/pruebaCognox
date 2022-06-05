@@ -26,7 +26,7 @@ Debido a que la prueba no fue tan compleja solo pude aplicar un patrón de compo
 Nota 1: En este proyecto use la metodologia de desarrollo TDD por tanto hay pruebas de tipo unitaria y feature,
 para verificar que pasan los caso que se diseñaron correr php artisan test
 
-Nota: Si deseas usar DOCKER el proyecto tiene el docker-composer y los docker-file
+Nota: Si deseas usar DOCKER el proyecto tiene el docker-composer y los docker-file esta en la rama develop
 
 
 ## Usuarios y Casos de prueba
