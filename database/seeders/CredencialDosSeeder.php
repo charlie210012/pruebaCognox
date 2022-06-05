@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\account;
 use App\Models\permit;
+use App\Models\registerOther;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -61,6 +62,18 @@ class CredencialDosSeeder extends Seeder
             'code'=>Hash::make("3.2.2000000".now()),
             'user_final'=>3,
             'value'=>2000000
+        ]);
+
+        registerOther::create([
+            'account_id'=>4,
+            'user_id'=>2,
+            'user_other_account'=>3
+        ]);
+
+        registerOther::create([
+            'account_id'=>5,
+            'user_id'=>2,
+            'user_other_account'=>3
         ]);
     }
 }

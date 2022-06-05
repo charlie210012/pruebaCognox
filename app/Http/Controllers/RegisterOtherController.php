@@ -18,18 +18,33 @@ class RegisterOtherController extends Controller
             ]); 
         }
 
-        $register = registerOther::create([
+        $validate = registerOther::where([
             'account_id'=>$request->account_register,
             'user_id'=>Auth::user()->id,
             'user_other_account'=>account::find($request->account_register)->user_id
-        ]);
+        ])->first();
 
-        if($register){
+        if($validate){
             return response([
-                'status'=>'OK',
-                'mensaje'=>'El registo de la cuenta de terceros fue exitosa',
+                'status'=>'Error',
+                'mensaje'=>'La cuenta ya fue inscrita',
             ]);
+        }else{
+            $register = registerOther::create([
+                'account_id'=>$request->account_register,
+                'user_id'=>Auth::user()->id,
+                'user_other_account'=>account::find($request->account_register)->user_id
+            ]);
+    
+            if($register){
+                return response([
+                    'status'=>'OK',
+                    'mensaje'=>'El registo de la cuenta de terceros fue exitosa',
+                ]);
+            }
         }
+
+       
     }
 
     

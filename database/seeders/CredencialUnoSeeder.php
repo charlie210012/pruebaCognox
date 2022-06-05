@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\account;
 use App\Models\permit;
+use App\Models\registerOther;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -80,5 +81,18 @@ class CredencialUnoSeeder extends Seeder
             'user_final'=>1,
             'value'=>2000000
         ]);
+
+        registerOther::create([
+            'account_id'=>1,
+            'user_id'=>2,
+            'user_other_account'=>1
+        ]);
+
+        registerOther::create([
+            'account_id'=>2,
+            'user_id'=>2,
+            'user_other_account'=>1
+        ]);
+
     }
 }
